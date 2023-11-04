@@ -68,8 +68,7 @@ public class PersonsController {
              .filter((p) -> p.getId()==id)
              .findFirst()
              .orElseThrow());
-        System.out.println(inMemoryList);
-        System.out.println("Person Deleted");
+
         return delete;
 
     }

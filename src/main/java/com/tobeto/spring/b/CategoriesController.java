@@ -44,14 +44,12 @@ public class CategoriesController {
         return false;
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public boolean delete(@PathVariable int id){
        boolean delete=inMemoryList.remove(inMemoryList.stream()
                .filter((p)->p.getId()==id)
                .findFirst()
                .orElseThrow());
-        System.out.println(inMemoryList);
-        System.out.println("Person Deleted");
         return delete;
     }
 }

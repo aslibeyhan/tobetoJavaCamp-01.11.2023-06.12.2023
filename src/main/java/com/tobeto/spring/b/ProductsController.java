@@ -48,7 +48,6 @@ public class ProductsController {
                .filter((p)->p.getId()==id)
                .findFirst()
                .orElseThrow());
-        System.out.println(inMemoryList);
         return delete;
     }
 }
