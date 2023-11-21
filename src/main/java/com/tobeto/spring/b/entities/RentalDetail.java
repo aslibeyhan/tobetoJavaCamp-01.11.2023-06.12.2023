@@ -2,9 +2,17 @@ package com.tobeto.spring.b.entities;
 
 import ch.qos.logback.core.rolling.helper.RenameUtil;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "rental_details")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class RentalDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
