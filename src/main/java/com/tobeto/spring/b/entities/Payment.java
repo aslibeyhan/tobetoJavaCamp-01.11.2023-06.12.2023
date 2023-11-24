@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Table(name = "payments")
 @Entity
 @Getter
@@ -21,7 +23,9 @@ public class Payment {
     private int total_price;
     @Column(name = "payment_method")
     private int payment_method;
+
     @ManyToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
+    @JoinColumn(name="rental_details_id")
+    private RentalDetail rentalDetail;
+
 }

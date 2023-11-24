@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.postgresql.copy.CopyManager;
+
+import java.util.List;
 
 @Table(name = "rental_details")
 @Entity
@@ -27,4 +30,7 @@ public class RentalDetail {
     @ManyToOne
     @JoinColumn(name = "rental_id")
     private Rental rental;
+
+    @OneToMany(mappedBy = "rentalDetail")
+    private List<Payment> payments;
 }

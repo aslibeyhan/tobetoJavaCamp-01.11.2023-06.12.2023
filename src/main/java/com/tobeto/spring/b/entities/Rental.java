@@ -25,8 +25,7 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "rental")
-    private List<Payment> payments;
+
     @OneToMany(mappedBy = "rental")
     private List<RentalDetail> rentalDetails;
 

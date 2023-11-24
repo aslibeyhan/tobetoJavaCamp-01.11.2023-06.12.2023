@@ -22,9 +22,7 @@ public class Brand {
     private int id;
     @Column(name = "name")
     private String name;
-   @OneToMany(mappedBy = "brand")//***attribute ismi - column değil !!!***
-   @JsonIgnore
-    private List<Car> cars;
+
    @OneToMany(mappedBy = "brand")
    private List<Model> models;
 

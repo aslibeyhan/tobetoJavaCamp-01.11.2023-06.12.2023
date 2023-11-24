@@ -1,5 +1,6 @@
 package com.tobeto.spring.b.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,9 +24,10 @@ public class Car {
     private String plate;
     @Column(name="daily_price")
     private double daily_price;
+
     @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+    @JoinColumn(name = "model_id")
+    private Model model;
 
    @OneToMany(mappedBy = "car")
     private List<Rental> rentals;
