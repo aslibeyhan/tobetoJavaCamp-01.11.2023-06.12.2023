@@ -1,5 +1,6 @@
 package com.tobeto.spring.b.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.dynalink.linker.LinkerServices;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,6 @@ public class User {
     @Column(name = "phone")
     private String phone;
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Rental> rentals;
 }

@@ -1,5 +1,6 @@
 package com.tobeto.spring.b.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,8 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(name="rental_message")
+    private String rental_message;
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
@@ -27,6 +30,7 @@ public class Rental {
     private User user;
 
     @OneToMany(mappedBy = "rental")
+    @JsonIgnore
     private List<RentalDetail> rentalDetails;
 
 }

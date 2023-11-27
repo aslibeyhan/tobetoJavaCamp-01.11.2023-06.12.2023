@@ -2,42 +2,47 @@ package com.tobeto.spring.b.controllers;
 
 import com.tobeto.spring.b.entities.Model;
 import com.tobeto.spring.b.repositories.ModelRepository;
+import com.tobeto.spring.b.services.abstracts.ModelService;
+import com.tobeto.spring.b.services.dtos.requests.model.AddModelRequest;
+import com.tobeto.spring.b.services.dtos.requests.model.UpdateModelRequest;
+import com.tobeto.spring.b.services.dtos.responses.model.GetModelListResponse;
+import com.tobeto.spring.b.services.dtos.responses.model.GetModelResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/models")
-public class ModelsController {
-    private  final ModelRepository modelRepository;
+@AllArgsConstructor
 
-    public ModelsController(ModelRepository modelRepository) {
-        this.modelRepository = modelRepository;
-    }
+public class ModelsController {
+    private  final ModelService modelService;
+
+
 
     @GetMapping
-    public List<Model> getAll(){
-       return modelRepository.findAll();
+    public List<GetModelListResponse> getAll(){
+       return modelService.getAll();
     }
     @GetMapping("{id}")
-    public Model getById(@PathVariable int id){
-        return modelRepository.findById(id).orElseThrow();
+    public GetModelResponse getById(@PathVariable int id){
+
+        return modelService.getById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody Model model){
-        modelRepository.save(model);
+    public void add(@RequestBody AddModelRequest addModelRequest){
+    modelService.add(addModelRequest);
     }
 
     @PutMapping
-    public void update(@RequestBody Model model){
-        modelRepository.findById(model.getId()).orElseThrow();
-        modelRepository.save(model);
+    public void update(@RequestBody UpdateModelRequest updateModelRequest){
+       modelService.update(updateModelRequest);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
-        Model modelToDelete=modelRepository.findById(id).orElseThrow();
-        modelRepository.delete(modelToDelete);
+        modelService.delete(id);
     }
 }

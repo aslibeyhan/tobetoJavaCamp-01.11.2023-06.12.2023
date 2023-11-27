@@ -22,13 +22,15 @@ public class Car {
     private int id;
     @Column(name = "plate")
     private String plate;
+
     @Column(name="daily_price")
-    private double daily_price;
+    private int daily_price;
 
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
 
    @OneToMany(mappedBy = "car")
+   @JsonIgnore
     private List<Rental> rentals;
 }

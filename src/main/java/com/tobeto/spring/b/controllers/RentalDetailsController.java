@@ -2,45 +2,48 @@ package com.tobeto.spring.b.controllers;
 
 import com.tobeto.spring.b.entities.RentalDetail;
 import com.tobeto.spring.b.repositories.RentalDetailRepository;
+import com.tobeto.spring.b.services.abstracts.RentalDetailService;
+import com.tobeto.spring.b.services.dtos.requests.rentalDetail.AddRentalDetailRequest;
+import com.tobeto.spring.b.services.dtos.requests.rentalDetail.UpdateRentalDetailRequest;
+import com.tobeto.spring.b.services.dtos.responses.rentalDetail.GetRentalDetailListResponse;
+import com.tobeto.spring.b.services.dtos.responses.rentalDetail.GetRentalDetailResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/rentalDetails")
+@AllArgsConstructor
 public class RentalDetailsController {
 
-    private final RentalDetailRepository rentalDetailRepository;
+    private final RentalDetailService rentalDetailService;
 
-    public RentalDetailsController(RentalDetailRepository rentalDetailRepository) {
-        this.rentalDetailRepository = rentalDetailRepository;
-    }
+
 
     @GetMapping
-    public List<RentalDetail> getAll(){
-        return rentalDetailRepository.findAll();
+    public List<GetRentalDetailListResponse> getAll(){
+        return rentalDetailService.getAll();
     }
 
     @GetMapping("{id}")
-    public RentalDetail getById(@PathVariable int id){
+    public GetRentalDetailResponse getById(@PathVariable int id){
 
-        return rentalDetailRepository.findById(id).orElseThrow();
+       return  rentalDetailService.getById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody RentalDetail rentalDetail){
-        rentalDetailRepository.save(rentalDetail);
+    public void add(@RequestBody AddRentalDetailRequest addRentalDetailRequest){
+       rentalDetailService.add(addRentalDetailRequest);
     }
 
     @PutMapping
-    public void update(@RequestBody RentalDetail rentalDetail){
-        rentalDetailRepository.findById(rentalDetail.getId()).orElseThrow();
-        rentalDetailRepository.save(rentalDetail);
+    public void update(@RequestBody UpdateRentalDetailRequest updateRentalDetailRequest){
+       rentalDetailService.update(updateRentalDetailRequest);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
-        RentalDetail rentalDetailToDelete=rentalDetailRepository.findById(id).orElseThrow();
-        rentalDetailRepository.delete(rentalDetailToDelete);
+        rentalDetailService.delete(id);
     }
 }

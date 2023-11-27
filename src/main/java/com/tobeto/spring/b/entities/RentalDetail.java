@@ -1,6 +1,7 @@
 package com.tobeto.spring.b.entities;
 
 import ch.qos.logback.core.rolling.helper.RenameUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,5 +33,6 @@ public class RentalDetail {
     private Rental rental;
 
     @OneToMany(mappedBy = "rentalDetail")
+    @JsonIgnore
     private List<Payment> payments;
 }

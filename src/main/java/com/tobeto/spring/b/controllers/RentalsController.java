@@ -2,43 +2,47 @@ package com.tobeto.spring.b.controllers;
 
 import com.tobeto.spring.b.entities.Rental;
 import com.tobeto.spring.b.repositories.RentalRepository;
+import com.tobeto.spring.b.services.abstracts.RentalService;
+import com.tobeto.spring.b.services.dtos.requests.rental.AddRentalRequest;
+import com.tobeto.spring.b.services.dtos.requests.rental.UpdateRentalRequest;
+import com.tobeto.spring.b.services.dtos.responses.rental.GetRentalListResponse;
+import com.tobeto.spring.b.services.dtos.responses.rental.GetRentalResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/rentals")
+@AllArgsConstructor
 public class RentalsController {
 
-    private final RentalRepository rentalRepository;
+    private final RentalService rentalService;
 
-    public RentalsController(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
-    }
+
+
     @GetMapping
-    public List<Rental> gelAll(){
-        return rentalRepository.findAll();
+    public List<GetRentalListResponse> gelAll(){
+        return rentalService.getAll();
     }
 
     @GetMapping("{id}")
-    public Rental getById(@PathVariable int id){
-       return rentalRepository.findById(id).orElseThrow();
+    public GetRentalResponse getById(@PathVariable int id){
+       return rentalService.getById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody Rental rental){
-        rentalRepository.save(rental);
+    public void add(@RequestBody AddRentalRequest addRentalRequest){
+        rentalService.add(addRentalRequest);
     }
 
     @PutMapping
-    public void update(@RequestBody Rental rental){
-        rentalRepository.findById(rental.getId()).orElseThrow();
-        rentalRepository.save(rental);
+    public void update(@RequestBody UpdateRentalRequest updateRentalRequest){
+     rentalService.update(updateRentalRequest);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
-        Rental rentalToDelete=rentalRepository.findById(id).orElseThrow();
-        rentalRepository.delete(rentalToDelete);
+       rentalService.delete(id);
     }
 }
