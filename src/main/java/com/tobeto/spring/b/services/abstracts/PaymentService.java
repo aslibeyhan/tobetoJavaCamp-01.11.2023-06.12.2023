@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface PaymentService {
     List<GetPaymentListResponse> getAll();
+    List<GetPaymentListResponse> getAllRentalDetail();
     GetPaymentResponse getById(int id);
     public void add(AddPaymentRequest  addPaymentRequest);
     public void update(UpdatePaymentRequest updatePaymentRequest);

@@ -34,6 +34,11 @@ public class PaymentManager implements PaymentService {
     }
 
     @Override
+    public List<GetPaymentListResponse> getAllRentalDetail() {
+        return paymentRepository.getAllRentalDetail();
+    }
+
+    @Override
     public GetPaymentResponse getById(int id) {
         Payment payment = paymentRepository.findById(id).orElseThrow();
         GetPaymentResponse paymentResponse=new GetPaymentResponse();

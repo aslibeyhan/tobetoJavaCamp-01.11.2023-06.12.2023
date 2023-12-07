@@ -7,6 +7,7 @@ import com.tobeto.spring.b.services.dtos.requests.brand.AddBrandRequest;
 import com.tobeto.spring.b.services.dtos.requests.brand.UpdateBrandRequest;
 import com.tobeto.spring.b.services.dtos.responses.brand.GetBrandListResponse;
 import com.tobeto.spring.b.services.dtos.responses.brand.GetBrandResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,8 @@ import java.util.List;
 @Service
 public class BrandManager implements BrandService {
    private final BrandRepository brandRepository;
-    @Override
+
+   /* @Override
     public List<GetBrandListResponse> getAll() {
         List<Brand> brandList = brandRepository.findAll();
         List<GetBrandListResponse> brandListResponses = new ArrayList<>();
@@ -28,6 +30,26 @@ public class BrandManager implements BrandService {
             brandListResponses.add(brandResponse);
         }
         return brandListResponses;
+    }*/
+
+    @Override
+    public List<GetBrandListResponse> getByName(String name,int id) {
+        List<Brand> brands= brandRepository.findByNameLikeOrIdEquals("%"+name+"%",id);
+        //mapleme yapıyoruz.
+        List<GetBrandListResponse> response=new ArrayList<>();
+
+        for (Brand brand:brands) {
+            response.add(new GetBrandListResponse(brand.getName()));
+        }
+        return  response;
+    }
+
+    @Override
+    public List<GetBrandListResponse> search(String name) {
+        // List<Brand> brands=brandRepository.search2(name);
+         //MAP --- Lambda Expression & Stream API
+
+        return brandRepository.search3(name);
     }
 
     @Override
@@ -39,7 +61,7 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public void add(AddBrandRequest addBrandRequest) {
+    public void add( AddBrandRequest addBrandRequest) {
 
         if(addBrandRequest.getName().length()<2){
             throw new RuntimeException("marka adı 2 haneden küçük olamaz");

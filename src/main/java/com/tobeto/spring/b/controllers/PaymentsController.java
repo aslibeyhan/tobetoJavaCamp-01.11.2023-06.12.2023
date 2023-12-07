@@ -26,6 +26,11 @@ public class PaymentsController {
         return paymentService.getAll();
     }
 
+    @GetMapping("getAllRentalDetail")
+    public  List<GetPaymentListResponse> getAllRentalDetail(){
+        return  paymentService.getAllRentalDetail();
+    }
+
     @GetMapping("{id}")
     public GetPaymentResponse  getById(@PathVariable int id){
         return paymentService.getById(id);

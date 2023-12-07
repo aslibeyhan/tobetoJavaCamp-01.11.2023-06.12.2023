@@ -21,7 +21,7 @@ import java.util.List;
 public class CarManager implements CarService {
     private final CarRepository carRepository;
 
-    @Override
+    /*@Override
     public List<GetCarListResponse> getAll() {
         List<Car> cars = carRepository.findAll();
         List<GetCarListResponse> carResponses = new ArrayList<GetCarListResponse>();
@@ -38,6 +38,11 @@ public class CarManager implements CarService {
 
         }
         return carResponses;
+    }*/
+
+    @Override
+    public List<GetCarListResponse> getAll() {
+        return carRepository.getAll();
     }
 
     @Override

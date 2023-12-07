@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class GetBrandListResponse {
-    private int id;
+    //private int id;
     private String name;
 }

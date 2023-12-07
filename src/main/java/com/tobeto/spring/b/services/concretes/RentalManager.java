@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RentalManager implements RentalService {
     private final RentalRepository rentalRepository;
-    @Override
+   /* @Override
     public List<GetRentalListResponse> getAll() {
         List<Rental> rentalList=rentalRepository.findAll();
         List<GetRentalListResponse> rentalListResponses=new ArrayList<>();
@@ -28,6 +28,16 @@ public class RentalManager implements RentalService {
             rentalListResponses.add(rentalResponse);
         }
         return  rentalListResponses;
+    }*/
+
+    @Override
+    public List<GetRentalListResponse> getAll() {
+        return rentalRepository.getAll();
+    }
+
+    @Override
+    public List<GetRentalListResponse> getAllUser() {
+        return rentalRepository.getAllUser();
     }
 
     @Override

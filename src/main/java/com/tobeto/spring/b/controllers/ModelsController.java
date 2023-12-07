@@ -1,7 +1,5 @@
 package com.tobeto.spring.b.controllers;
 
-import com.tobeto.spring.b.entities.Model;
-import com.tobeto.spring.b.repositories.ModelRepository;
 import com.tobeto.spring.b.services.abstracts.ModelService;
 import com.tobeto.spring.b.services.dtos.requests.model.AddModelRequest;
 import com.tobeto.spring.b.services.dtos.requests.model.UpdateModelRequest;
@@ -18,9 +16,6 @@ import java.util.List;
 
 public class ModelsController {
     private  final ModelService modelService;
-
-
-
     @GetMapping
     public List<GetModelListResponse> getAll(){
        return modelService.getAll();
@@ -45,4 +40,6 @@ public class ModelsController {
     public void delete(@PathVariable int id){
         modelService.delete(id);
     }
+
+
 }

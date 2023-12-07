@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface RentalService {
     List<GetRentalListResponse> getAll();
+    List<GetRentalListResponse> getAllUser();
     GetRentalResponse getById(int id);
     public void add(AddRentalRequest addRentalRequest);
     public  void update(UpdateRentalRequest updateRentalRequest);

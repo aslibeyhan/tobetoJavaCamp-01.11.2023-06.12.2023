@@ -16,12 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ModelManager implements ModelService {
     private final ModelRepository modelRepository;
-    @Override
+
+  /*  @Override
     public List<GetModelListResponse> getAll() {
-        List<Model> modelList=modelRepository.findAll();
-        List<GetModelListResponse> modelListResponses=new ArrayList<>();
-        for (Model model:modelList) {
-            GetModelListResponse modelResponse=new GetModelListResponse();
+        List<Model> modelList = modelRepository.findAll();
+        List<GetModelListResponse> modelListResponses = new ArrayList<>();
+        for (Model model : modelList) {
+            GetModelListResponse modelResponse = new GetModelListResponse();
             modelResponse.setId(model.getId());
             modelResponse.setName(model.getName());
             modelResponse.setYear(model.getYear());
@@ -29,12 +30,18 @@ public class ModelManager implements ModelService {
 
         }
         return modelListResponses;
+    }*/
+
+
+    @Override
+    public List<GetModelListResponse> getAll() {
+        return modelRepository.getAll();
     }
 
     @Override
     public GetModelResponse getById(int id) {
-        Model model=modelRepository.findById(id).orElseThrow();
-        GetModelResponse modelResponse=new GetModelResponse();
+        Model model = modelRepository.findById(id).orElseThrow();
+        GetModelResponse modelResponse = new GetModelResponse();
         modelResponse.setId(model.getId());
         modelResponse.setName(model.getName());
         modelResponse.setYear(model.getYear());
@@ -44,7 +51,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public void add(AddModelRequest addModelRequest) {
-        Model model=new Model();
+        Model model = new Model();
         model.setName(addModelRequest.getName());
         model.setYear(addModelRequest.getYear());
         modelRepository.save(model);
@@ -52,7 +59,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public void update(UpdateModelRequest updateModelRequest) {
-        Model modelToUpdate=modelRepository.findById(updateModelRequest.getId()).orElseThrow();
+        Model modelToUpdate = modelRepository.findById(updateModelRequest.getId()).orElseThrow();
         modelToUpdate.setName(updateModelRequest.getName());
         modelToUpdate.setYear(updateModelRequest.getYear());
         modelRepository.save(modelToUpdate);
@@ -62,8 +69,10 @@ public class ModelManager implements ModelService {
 
     @Override
     public void delete(int id) {
-        Model modelToDelete=modelRepository.findById(id).orElseThrow();
+        Model modelToDelete = modelRepository.findById(id).orElseThrow();
         modelRepository.delete(modelToDelete);
 
     }
+
 }
+

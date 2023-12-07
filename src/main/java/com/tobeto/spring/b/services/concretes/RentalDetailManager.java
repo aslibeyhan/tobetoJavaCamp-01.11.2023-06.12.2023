@@ -34,6 +34,11 @@ public class RentalDetailManager implements RentalDetailService {
         return rentalDetailListResponses;
     }
 
+    @Override
+    public List<GetRentalDetailListResponse> getAllRental() {
+        return rentalDetailRepository.getAllRental();
+    }
+
 
     @Override
     public GetRentalDetailResponse getById(int id) {

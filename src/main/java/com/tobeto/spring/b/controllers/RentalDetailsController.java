@@ -26,6 +26,11 @@ public class RentalDetailsController {
         return rentalDetailService.getAll();
     }
 
+    @GetMapping("getAllRental")
+    public  List<GetRentalDetailListResponse> getAllRental(){
+        return  rentalDetailService.getAllRental();
+    }
+
     @GetMapping("{id}")
     public GetRentalDetailResponse getById(@PathVariable int id){
 

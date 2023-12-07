@@ -13,5 +13,7 @@ public class GetModelListResponse {
     private int id;
     private String name;
     private int year;
+    private  GetBrandListResponse brandListResponse;
+
 
 }
