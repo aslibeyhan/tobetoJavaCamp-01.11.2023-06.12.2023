@@ -5,6 +5,7 @@ import com.tobeto.spring.b.services.dtos.requests.model.AddModelRequest;
 import com.tobeto.spring.b.services.dtos.requests.model.UpdateModelRequest;
 import com.tobeto.spring.b.services.dtos.responses.model.GetModelListResponse;
 import com.tobeto.spring.b.services.dtos.responses.model.GetModelResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class ModelsController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddModelRequest addModelRequest){
+    public void add(@RequestBody @Valid  AddModelRequest addModelRequest){
     modelService.add(addModelRequest);
     }
 

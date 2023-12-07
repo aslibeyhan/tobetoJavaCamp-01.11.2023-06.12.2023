@@ -48,6 +48,9 @@ public class UserManager implements UserService {
 
     @Override
     public void add(AddUserRequest addUserRequest) {
+        if(userRepository.existsByPhone(addUserRequest.getPhone().trim())){
+            throw new RuntimeException("Bu telefon numarası ile kayıt bulunmaktadır");
+        }
        User user=new User();
        user.setFirst_name(addUserRequest.getFirst_name());
        user.setLast_name(addUserRequest.getLast_name());

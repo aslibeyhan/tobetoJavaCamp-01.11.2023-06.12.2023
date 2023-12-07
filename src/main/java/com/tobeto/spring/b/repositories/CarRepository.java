@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car,Integer> {
 
+    boolean existsByPlate(String plate);
+
 
     @Query("SELECT new com.tobeto.spring.b.services.dtos.responses.car" +
             ".GetCarListResponse(c.id,c.plate,c.daily_price,new com.tobeto.spring.b.services.dtos.responses.model.GetModelListResponse(m.id,m.name,m.year)) " +

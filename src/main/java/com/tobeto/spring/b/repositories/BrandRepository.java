@@ -2,6 +2,7 @@ package com.tobeto.spring.b.repositories;
 
 import com.tobeto.spring.b.entities.Brand;
 import com.tobeto.spring.b.services.dtos.responses.brand.GetBrandListResponse;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,8 +10,10 @@ import java.util.List;
 
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
    //DERİVED QUERY METHODS
-   // List<Brand> findByNameLike(String name);
-   List<Brand> findByNameLikeOrIdEquals(String name,int id);
+    List<Brand> findByName(String name);
+    List<Brand> findByNameLikeOrIdEquals(String name,int id);
+
+    boolean existsByName(String name);
 
    //JPA +SQL => JPQL
    //SELECT *FROM brands sqldeki sorgu ;

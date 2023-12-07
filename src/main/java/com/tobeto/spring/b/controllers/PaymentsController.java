@@ -8,6 +8,7 @@ import com.tobeto.spring.b.services.dtos.requests.payment.UpdatePaymentRequest;
 import com.tobeto.spring.b.services.dtos.responses.car.GetCarListResponse;
 import com.tobeto.spring.b.services.dtos.responses.payment.GetPaymentListResponse;
 import com.tobeto.spring.b.services.dtos.responses.payment.GetPaymentResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class PaymentsController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddPaymentRequest addPaymentRequest){
+    public void add(@RequestBody  @Valid AddPaymentRequest addPaymentRequest){
         paymentService.add(addPaymentRequest);
     }
     @PutMapping()

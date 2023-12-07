@@ -7,6 +7,7 @@ import com.tobeto.spring.b.services.dtos.requests.rentalDetail.AddRentalDetailRe
 import com.tobeto.spring.b.services.dtos.requests.rentalDetail.UpdateRentalDetailRequest;
 import com.tobeto.spring.b.services.dtos.responses.rentalDetail.GetRentalDetailListResponse;
 import com.tobeto.spring.b.services.dtos.responses.rentalDetail.GetRentalDetailResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class RentalDetailsController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddRentalDetailRequest addRentalDetailRequest){
+    public void add(@RequestBody @Valid AddRentalDetailRequest addRentalDetailRequest){
        rentalDetailService.add(addRentalDetailRequest);
     }
 

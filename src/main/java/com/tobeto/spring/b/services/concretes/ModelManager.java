@@ -51,6 +51,9 @@ public class ModelManager implements ModelService {
 
     @Override
     public void add(AddModelRequest addModelRequest) {
+      if(modelRepository.existsByYear(addModelRequest.getYear())){
+          throw new RuntimeException("Aynı yıla ait bir model kabul edilebilir");
+      }
         Model model = new Model();
         model.setName(addModelRequest.getName());
         model.setYear(addModelRequest.getYear());

@@ -7,6 +7,7 @@ import com.tobeto.spring.b.services.dtos.requests.user.AddUserRequest;
 import com.tobeto.spring.b.services.dtos.requests.user.UpdateUserRequest;
 import com.tobeto.spring.b.services.dtos.responses.user.GetUserListResponse;
 import com.tobeto.spring.b.services.dtos.responses.user.GetUserResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddUserRequest addUserRequest){
+    public void add(@RequestBody @Valid AddUserRequest addUserRequest){
         userService.add(addUserRequest);
     }
 

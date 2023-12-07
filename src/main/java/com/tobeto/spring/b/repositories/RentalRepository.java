@@ -22,4 +22,6 @@ public interface RentalRepository extends JpaRepository<Rental,Integer> {
             "INNER JOIN r.car c " +  // İlk INNER JOIN
             "INNER JOIN r.user u")   // İkinci INNER JOIN
     List<GetRentalListResponse> getAllUser();
+
+
 }

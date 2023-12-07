@@ -62,6 +62,15 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add( AddBrandRequest addBrandRequest) {
+       //Aynı isimde iki marka bulunamaz
+        //List<Brand> brandWithSameName=brandRepository.findByName(addBrandRequest.getName().trim()); //trim baş-son boşlukları siler.
+        /*if(!brandWithSameName.isEmpty()){
+            throw  new RuntimeException("Aynı isimde iki marka eklenemez");
+        }*/
+
+        if(brandRepository.existsByName(addBrandRequest.getName().trim())){
+            throw  new RuntimeException("Aynı isimde iki marka eklenemez");
+        }
 
         if(addBrandRequest.getName().length()<2){
             throw new RuntimeException("marka adı 2 haneden küçük olamaz");
