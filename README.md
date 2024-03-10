@@ -19,3 +19,4 @@ I have compiled all the assignments given by our instructors within the scope of
 This project is developed at a basic level for those who are just starting to learn Java & React Fullstack. If you want to contribute at an advanced level, please feel free to provide feedback in the Issues section.**
 
 ### Thank you for taking the time to contribute to my project :)
+
